@@ -4,8 +4,12 @@ const app = express(); //la app
 
 app.get('/', (req, res) => {
     res.json({
-        message: 'Meower! 😹 🐈'
+        message: 'Meownjnner! 😹 🐈'
     });
+});
+
+app.post('/mews', (req, res) => {
+    console.log(req.body);
 });
 
 app.listen(5000, () => {
