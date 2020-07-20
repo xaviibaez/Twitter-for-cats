@@ -7,6 +7,18 @@ const app = express(); //la app
 app.use(cors());
 app.use(express.json());
 
+
+/*
+npm init -y  
+npm start
+
+-- AutoSave --
+npm i express morgan    
+npm i --save-dev nodemon
+npm run dev
+
+npm i cors 
+*/
 //Cuando se intenta acceder a http://localhost:5000
 app.get('/', (req, res) => {
     res.json({
@@ -16,8 +28,8 @@ app.get('/', (req, res) => {
 
 //Asegurarnos que es contenido valido -> no es vacio, ni el titulo ni el contenido
 function isValidMew(mew) {
-    return mew.name && mew.name.toString().trim() !== '' && mew.name.toString().trim().length <= 50 &&
-    mew.content && mew.content.toString().trim() !== '' && mew.content.toString().trim().length <= 140;
+    return mew.name && mew.name.toString().trim() !== '' &&
+    mew.content && mew.content.toString().trim() !== '';
 }
 
 //Aqui entra cuando se hace un nuevo mew (nuevo mensaje)
@@ -25,6 +37,11 @@ app.post('/mews', (req, res) => {
     if(isValidMew(req, res)){
         //Si es valido lo añadimos a la BD
         console.log("Inserting into DB...");
+
+        const mew = {
+            name: req.body.name.toString(),
+            content: req.body.content.toString()
+          };
         
     }
     else{
@@ -33,7 +50,6 @@ app.post('/mews', (req, res) => {
             message: 'Hey! Name and Content are required!'
         })
     }
-    
 });
 
 app.listen(5000, () => {
