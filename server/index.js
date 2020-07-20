@@ -9,6 +9,7 @@ app.use(express.json());
 
 
 /*
+-- EN LA CAPERTA DE SERVER --
 npm init -y  
 npm start
 
@@ -34,7 +35,7 @@ function isValidMew(mew) {
 
 //Aqui entra cuando se hace un nuevo mew (nuevo mensaje)
 app.post('/mews', (req, res) => {
-    if(isValidMew(req, res)){
+    if(isValidMew(req.body)){
         //Si es valido lo añadimos a la BD
         console.log("Inserting into DB...");
 
@@ -43,6 +44,7 @@ app.post('/mews', (req, res) => {
             content: req.body.content.toString()
           };
         
+        console.log(mew);
     }
     else{
         res.status(422);
