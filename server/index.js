@@ -18,8 +18,15 @@ npm i express morgan
 npm i --save-dev nodemon
 npm run dev
 
+-- CORS -> Seguridad --
 npm i cors 
+
+-- MONGO DB *LLORA^^* --
+-- Tener mongoDB instalado en local *IMPORTANTE* --
+npm i monk
+mongo -> una vez instalado para gestionar mongo des de la consola
 */
+
 //Cuando se intenta acceder a http://localhost:5000
 app.get('/', (req, res) => {
     res.json({
@@ -47,6 +54,7 @@ app.post('/mews', (req, res) => {
         console.log(mew);
     }
     else{
+        //Si se pone contenido string vacio salta este error, no se muestra en pantalla
         res.status(422);
         res.json({
             message: 'Hey! Name and Content are required!'
