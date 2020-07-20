@@ -1,7 +1,17 @@
-const express = require('express'); //Importar librerias de node
+//Importar librerias de node
+const express = require('express'); 
+//Cors
 const cors = require('cors');
+//Conexion a MongoDB
+const monk = require('monk');
 
-const app = express(); //la app
+//Objeto App
+const app = express(); 
+
+//Conectar a dominio/nombreBBDD
+const db = monk('localhost/meower');
+//Recuperar la colección 'mews', si no existe, la crea
+const mews = db.get('mews');
 
 //Escuchar cualquier peticion y recoger el JSON
 app.use(cors());
@@ -46,12 +56,21 @@ app.post('/mews', (req, res) => {
         //Si es valido lo añadimos a la BD
         console.log("Inserting into DB...");
 
+        //Creamos el objeto con los datos del form
         const mew = {
             name: req.body.name.toString(),
-            content: req.body.content.toString()
+            content: req.body.content.toString(),
+            created: new Date()
           };
-        
+
         console.log(mew);
+
+        //Hacemos insert en la BBDD
+        mews
+        .insert(mew)
+        .then(createdMew => {
+            res.json(createdMew);
+        });
     }
     else{
         //Si se pone contenido string vacio salta este error, no se muestra en pantalla
