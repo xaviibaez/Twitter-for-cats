@@ -32,7 +32,7 @@ npm run dev
 npm i cors 
 
 -- MONGO DB *LLORA^^* --
--- Tener mongoDB instalado en local *IMPORTANTE* --
+-- Tener mongoDB instalado en local *IMPORTANTE* Instalar Mongo en C que sino no va--
 npm i monk
 mongo -> una vez instalado para gestionar mongo des de la consola
 */
