@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 console.log('Hello World!');
 
 const form = document.querySelector('form'); // grabbing an element on the page
@@ -28,6 +30,9 @@ form.addEventListener('submit', (event) => {
     body: JSON.stringify(mew),
     headers: {
       'content-type': 'application/json'
-    }
-  });
+    }//.then -> Enviar de vuelta des de el server al cliente el contenido creado
+  }).then(response => response.json())
+    .then(createdMew => {
+      console.log(createdMew);
+    });
 });
