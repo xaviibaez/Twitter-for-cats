@@ -1,5 +1,3 @@
-//const { response } = require("express");
-
 console.log('Hello World!');
 
 const form = document.querySelector('form'); // grabbing an element on the page

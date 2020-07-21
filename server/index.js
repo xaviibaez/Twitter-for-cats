@@ -44,6 +44,15 @@ app.get('/', (req, res) => {
     });
 });
 
+//Cuando se intenta acceder a http://localhost:5000/mews se deberian listar todos las pruebas realizadas.
+app.get('/mews', (req, res) => {
+    mews
+      .find()
+      .then(mews => {
+        res.json(mews);
+      });
+  });
+
 //Asegurarnos que es contenido valido -> no es vacio, ni el titulo ni el contenido
 function isValidMew(mew) {
     return mew.name && mew.name.toString().trim() !== '' &&
