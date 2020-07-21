@@ -34,5 +34,9 @@ form.addEventListener('submit', (event) => {
   }).then(response => response.json())
     .then(createdMew => {
       console.log(createdMew);
+      //Mostrar form y ocultar el loading element -> el gif y resetear el form
+      form.reset();
+      form.style.display = '';
+      loadingElement.style.display = 'none';
     });
 });
