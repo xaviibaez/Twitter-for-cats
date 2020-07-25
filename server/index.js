@@ -40,7 +40,7 @@ mongo -> una vez instalado para gestionar mongo des de la consola
 //Cuando se intenta acceder a http://localhost:5000
 app.get('/', (req, res) => {
     res.json({
-        message: 'Meowggdddggnjnner! 😹 🐈'
+        message: 'Meowggddcdsvsdvsdvsdvsdvdggnjnner! 😹 🐈'
     });
 });
 
