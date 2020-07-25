@@ -47,8 +47,9 @@ function listAllMews(){
   fetch(API_URL)
   .then(response => response.json())
   .then(mews => {
-    console.log(mews);
-
+    //Mostrar la ultima añadida primero
+    mews.reverse();
+    
     //Iterar por cada registro
     mews.forEach(mew =>{
       const div = document.createElement('div');
