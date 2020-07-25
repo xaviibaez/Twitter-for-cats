@@ -35,21 +35,25 @@ form.addEventListener('submit', (event) => {
     }//.then -> Enviar de vuelta des de el server al cliente el contenido creado
   }).then(response => response.json())
     .then(createdMew => {
-      console.log(createdMew);
+      
       //Mostrar form y ocultar el loading element -> el gif y resetear el form
       form.reset();
       form.style.display = '';
-      loadingElement.style.display = 'none';
+
+      //Llamar a la funcion que lista todo
+      listAllMews();
     });
 });
 
 function listAllMews(){
+  //Asi se actualiza automaticamente al mostrar el contenido de la BBDD
+  mewsElement.innerHTML = '';
   fetch(API_URL)
   .then(response => response.json())
   .then(mews => {
     //Mostrar la ultima añadida primero
     mews.reverse();
-    
+
     //Iterar por cada registro
     mews.forEach(mew =>{
       const div = document.createElement('div');
