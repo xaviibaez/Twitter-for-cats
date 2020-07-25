@@ -40,7 +40,7 @@ form.addEventListener('submit', (event) => {
       form.reset();
       form.style.display = '';
 
-      //Llamar a la funcion que lista todo
+      //Llamar a la funcion que lista todo al hacer un post para que se actualize la pagina con el contenido automaticamente
       listAllMews();
     });
 });
