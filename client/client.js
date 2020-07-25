@@ -53,14 +53,19 @@ function listAllMews(){
     mews.forEach(mew =>{
       const div = document.createElement('div');
 
+      //Text content para escribir sobre html deveulve todo el texto, se puede usar innerText que devuelve el texto visible
       const header = document.createElement('h3');
       header.textContent = mew.name;
 
       const contents = document.createElement('p');
       contents.textContent = mew.content;
 
+      const date = document.createElement('small');
+      date.textContent = new Date(mew.created);
+
       div.appendChild(header);
       div.appendChild(contents);
+      div.appendChild(date);
 
       mewsElement.appendChild(div);
     });
