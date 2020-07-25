@@ -4,7 +4,10 @@ const form = document.querySelector('form'); // grabbing an element on the page
 const loadingElement = document.querySelector('.loading');
 const API_URL = 'http://localhost:5000/mews'; //where is the server that im making the request
 
-loadingElement.style.display = 'none';
+loadingElement.style.display = '';
+
+//Listar todos el contenido que venga de la API
+listAllMews();
 
 form.addEventListener('submit', (event) => {
   event.preventDefault(); //Poner para hacer que trabajemos con JS
@@ -38,3 +41,16 @@ form.addEventListener('submit', (event) => {
       loadingElement.style.display = 'none';
     });
 });
+
+function listAllMews(){
+  fetch(API_URL)
+  .then(response => response.json())
+  .then(mews => {
+    console.log(mews);
+
+    //Iterar por cada registro
+    mews.forEach(mew =>{
+
+    });
+  });
+}
