@@ -2,6 +2,7 @@ console.log('Hello World!');
 
 const form = document.querySelector('form'); // grabbing an element on the page
 const loadingElement = document.querySelector('.loading');
+const mewsElement = document.querySelector('.mews');//Constante donde se mostrara el contenido venido de la API
 const API_URL = 'http://localhost:5000/mews'; //where is the server that im making the request
 
 loadingElement.style.display = '';
@@ -50,7 +51,19 @@ function listAllMews(){
 
     //Iterar por cada registro
     mews.forEach(mew =>{
+      const div = document.createElement('div');
 
+      const header = document.createElement('h3');
+      header.textContent = mew.name;
+
+      const contents = document.createElement('p');
+      contents.textContent = mew.content;
+
+      div.appendChild(header);
+      div.appendChild(contents);
+
+      mewsElement.appendChild(div);
     });
+    loadingElement.style.display = 'none';
   });
 }
