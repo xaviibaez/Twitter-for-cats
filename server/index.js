@@ -6,6 +6,8 @@ const cors = require('cors');
 const monk = require('monk');
 //Bad words
 const Filter = require('bad-words');
+//Rate limit
+const rateLimit = require('express-rate-limit');
 
 //Objeto App
 const app = express(); 
@@ -22,7 +24,6 @@ const filter = new Filter();
 //Escuchar cualquier peticion y recoger el JSON
 app.use(cors());
 app.use(express.json());
-
 
 /*
 -- EN LA CAPERTA DE SERVER --
@@ -70,6 +71,12 @@ function isValidMew(mew) {
     return mew.name && mew.name.toString().trim() !== '' &&
     mew.content && mew.content.toString().trim() !== '';
 }
+
+//Poner el rate limit despues de hacer la peticion
+app.use(rateLimit({
+    windowMs: 30 * 1000, // 30 seconds
+    max: 1
+  }));
 
 //Aqui entra cuando se hace un nuevo mew (nuevo mensaje)
 app.post('/mews', (req, res) => {
