@@ -35,6 +35,9 @@ npm i cors
 -- Tener mongoDB instalado en local *IMPORTANTE* Instalar Mongo en C que sino no va--
 npm i monk
 mongo -> una vez instalado para gestionar mongo des de la consola
+
+-- Para filtrar las bad words --
+npm i bad-words -> en la carpeta de server
 */
 
 //Cuando se intenta acceder a http://localhost:5000
