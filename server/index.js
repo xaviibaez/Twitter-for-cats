@@ -44,6 +44,9 @@ mongo -> una vez instalado para gestionar mongo des de la consola
 
 -- Para filtrar las bad words --
 npm i bad-words -> en la carpeta de server
+
+-- Rate limit para no sobre cargar la web con muchas peticiones de un usuario--
+npm i express-rate-limit
 */
 
 //Cuando se intenta acceder a http://localhost:5000
