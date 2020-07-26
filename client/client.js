@@ -35,45 +35,49 @@ form.addEventListener('submit', (event) => {
     }//.then -> Enviar de vuelta des de el server al cliente el contenido creado
   }).then(response => response.json())
     .then(createdMew => {
-      
-      //Mostrar form y ocultar el loading element -> el gif y resetear el form
+      //Resetear el form
       form.reset();
-      form.style.display = '';
+
+      setTimeout(() => {
+        //Mostrar form y ocultar el loading element tras hacer el post -> el gif 
+        //Despues de 30 sec se volvera a mostrar
+        form.style.display = '';
+      }, 30000);
 
       //Llamar a la funcion que lista todo al hacer un post para que se actualize la pagina con el contenido automaticamente
       listAllMews();
     });
 });
 
-function listAllMews(){
+function listAllMews() {
   //Asi se actualiza automaticamente al mostrar el contenido de la BBDD
   mewsElement.innerHTML = '';
   fetch(API_URL)
-  .then(response => response.json())
-  .then(mews => {
-    //Mostrar la ultima añadida primero
-    mews.reverse();
+    .then(response => response.json())
+    .then(mews => {
+      //Mostrar la ultima añadida primero
+      mews.reverse();
 
-    //Iterar por cada registro
-    mews.forEach(mew =>{
-      const div = document.createElement('div');
+      //Iterar por cada registro
+      mews.forEach(mew => {
+        const div = document.createElement('div');
 
-      //Text content para escribir sobre html deveulve todo el texto, se puede usar innerText que devuelve el texto visible
-      const header = document.createElement('h3');
-      header.textContent = mew.name;
+        //Text content para escribir sobre html deveulve todo el texto, se puede usar innerText que devuelve el texto visible
+        const header = document.createElement('h3');
+        header.textContent = mew.name;
 
-      const contents = document.createElement('p');
-      contents.textContent = mew.content;
+        const contents = document.createElement('p');
+        contents.textContent = mew.content;
 
-      const date = document.createElement('small');
-      date.textContent = new Date(mew.created);
+        const date = document.createElement('small');
+        date.textContent = new Date(mew.created);
 
-      div.appendChild(header);
-      div.appendChild(contents);
-      div.appendChild(date);
+        div.appendChild(header);
+        div.appendChild(contents);
+        div.appendChild(date);
 
-      mewsElement.appendChild(div);
+        mewsElement.appendChild(div);
+      });
+      loadingElement.style.display = 'none';
     });
-    loadingElement.style.display = 'none';
-  });
 }
