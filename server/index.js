@@ -4,14 +4,20 @@ const express = require('express');
 const cors = require('cors');
 //Conexion a MongoDB
 const monk = require('monk');
+//Bad words
+const Filter = require('bad-words');
 
 //Objeto App
 const app = express(); 
 
 //Conectar a dominio/nombreBBDD
 const db = monk('localhost/meower');
+
 //Recuperar la colección 'mews', si no existe, la crea
 const mews = db.get('mews');
+
+//Objeto que usaremos como filtro 
+const filter = new Filter();
 
 //Escuchar cualquier peticion y recoger el JSON
 app.use(cors());
@@ -70,8 +76,8 @@ app.post('/mews', (req, res) => {
 
         //Creamos el objeto con los datos del form
         const mew = {
-            name: req.body.name.toString(),
-            content: req.body.content.toString(),
+            name: filter.clean(req.body.name.toString()),
+            content: filter.clean(req.body.content.toString()),
             created: new Date()
           };
 
