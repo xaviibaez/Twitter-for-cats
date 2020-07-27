@@ -14,6 +14,7 @@ const app = express();
 
 //Conectar a dominio/nombreBBDD
 //Si esta varible de entorno esta definida conecta a -> process.env.MONGO_URI , si no localhost
+//Usaré mlab para hacer el host a mi BBDD 512 MB FREE
 const db = monk(process.env.MONGO_URI || 'localhost/meower');
 
 //Recuperar la colección 'mews', si no existe, la crea
