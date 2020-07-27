@@ -13,7 +13,8 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 
 //Conectar a dominio/nombreBBDD
-const db = monk('localhost/meower');
+//Si esta varible de entorno esta definida conecta a -> process.env.MONGO_URI , si no localhost
+const db = monk(process.env.MONGO_URI || 'localhost/meower');
 
 //Recuperar la colección 'mews', si no existe, la crea
 const mews = db.get('mews');
